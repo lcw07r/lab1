@@ -1,8 +1,8 @@
 /*
 My big file of javascript
 */
-
-var carArray = new Array('car-blue.png',"greencar.png",'pink.png','carred.png' "yella-car.png");
+//error 1: missing , error 2: unmatched file names
+var carArray = new Array('car-blue.png',"greencar.png",'pink.png','car-red.png', "yellacar.png");
 
 function changeCar() {
 	var banger = carArray[Math.floor(Math.random() * carArray.length)];
@@ -10,13 +10,15 @@ function changeCar() {
 	document.getElementById("car").src = "img/" + banger;
 }
 
+//error 5: duplicated functions, the one in index.html has been removed
 function startTimer() {
 	setInterval(changeMotd, 3000);
 	
 	// later I want to add some more automated stuff
 }
 
-var motdArray = new Array('It's a great day to sell cars!', "Welcome to Bodys Used Motors. The finest cars left!", "Today is "SALE FEVER" day!!!", 'A name you can surely trust!');
+//error 3 & 4: " and '
+var motdArray = new Array("It's a great day to sell cars!", "Welcome to Bodys Used Motors. The finest cars left!", "Today is 'SALE FEVER' day!!!", 'A name you can surely trust!');
 
 // The important message of the day (motd)
 function changeMotd(){
@@ -25,17 +27,18 @@ function changeMotd(){
 }
 
 function calculateCarValue(form) {
-	
-	var purchasePrice = form.carPurchasePrice.value;
+	var purchasePrice = form.carPurchasePrice.value;  
+	console.log(purchasePrice);
 	var carAge = form.carAge.value;
-	
+	console.log(carAge);
 	if(carAge <= 2) value = calculateCarPrice(purchasePrice, 2);
 	if(carAge == 3) value = calculateCarPrice(purchasePrice, 3);
 	if(carAge == 4) value = calculateCarPrice(purchasePrice, 4);
 	
 	// If the car is 5 or more years we want it
 	// More cheap stock is what we need!
-	if(carAge = 5 || carAge > 5){
+	//error 6: = should be ==
+	if(carAge == 5 || carAge > 5){
 		window.alert("I would be happy to take this rust bucket.... I mean car off your hands. It's too old if it's " + carAge + " years old.");
 		return;
 	}
@@ -46,7 +49,8 @@ function calculateCarValue(form) {
 function calculateCarPrice(purchasePrice, carAge){
 	
 	// I think this was meant to be at 10% not 1000%. We might make some money then.
-	var pruchaseRate = 1000;
+	//error 7: change 1000 to 10
+	var pruchaseRate = 10;
 	
 	var value = ((purchasePrice / 100) * pruchaseRate) * (1 / carAge);
 	return value;
@@ -55,12 +59,13 @@ function calculateCarPrice(purchasePrice, carAge){
 function calculateLoan(){
 	
 	var borrowValue = parseInt(document.getElementById("borrowValue").value);
-	
+
 	// I think this was in months?
 	var borrowTime = parseInt(document.getElementById("borrowTime").value);
 	
 	// We need at least 50% interest - i want a new hot tub
-	var interestRate = 50;
+	//error 8: 50 should be 0.5
+	var interestRate = 0.5;
 	var monthlyInterestRate = interestRate / 12;
 	
 	var totalMessage = "";
@@ -74,12 +79,14 @@ function calculateLoan(){
 		// my special interest rate calculation
 		// passed down through my family
 		var monthlyTotal = borrowValue * (monthlyInterestRate / (1 - (Math.pow((1 + monthlyInterestRate),(borrowTime * -1)))));
+
 		var monthlyTotalRounded = Math.round(monthlyTotal);
 		
 		var message = "We are happy to loan you &pound;" + numberWithCommas(borrowValue) + ". It will only cost <b>&pound;" + numberWithCommas(monthlyTotalRounded) + "</b> a month! That's a steal!";
 		
-		
+		//error 9:  may not need to add the borrowValue here?
 		var totalRepayable = borrowValue + (borrowTime * monthlyTotal);
+	
 		var totalRepayableRounded = Math.round(totalRepayable);
 		
 		var totalMessage = "Total repayable: <b>&pound;" + numberWithCommas(totalRepayableRounded) + "</b>";
@@ -89,6 +96,7 @@ function calculateLoan(){
 	document.getElementById("borrowTotalMonthly").innerHTML = message;
 	document.getElementById("borrowTotalMonthly").style.display = 'block';
 	
+	//error 10: changed borrowTotal from class to id in index.html
 	document.getElementById("borrowTotal").innerHTML = totalMessage;
 	document.getElementById("borrowTotal").style.display = 'block';
 }

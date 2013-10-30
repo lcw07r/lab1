@@ -2,16 +2,18 @@
 	<head>
 		<title>Boyd's Used Motors</title>
 		<script type="text/javascript" src="script.js"></script>
-		
+		<!--rrremoved this as this function is already in the js file
 		<script>
 			function startTimer() {
 				var coloursArray = new Array('green', 'blue', 'yellow', 'orange');
 				
 				// I don't think we want this any more, it is making some customers blind
 				// Just delete the colour doo dah
-				randomBackgroundColour(coloursArray);
+				
+				//randomBackgroundColour(coloursArray);
 			}
 		</script>
+		-->
 	</head>
 	
 	<body onload="startTimer()" style="background-color: #FFFFCC;">
@@ -66,8 +68,8 @@
 					<select name="carAge">
 						<option value="1">1 year</option>
 						<option value="2">2 years</option>
-						<option value="3 years">3 years</option>
-						<option value="4 years">4 years</option>
+						<option value="3">3 years</option>
+						<option value="4">4 years</option>
 						<option value="5">5 years</option>
 						<option value="6">6 years</option>
 						<option value="7">7 years</option>
@@ -102,7 +104,7 @@
 					<input type="submit" value="Calculate your loan" onClick="calculateLoan()">
 					<br/><br/>
 					<span id="borrowTotalMonthly" style="display: none; font-size: 24px; color: red;"></span><br/>
-					<span class="borrowTotal" style="display: none; font-size: 24px; color: red;"></span>
+					<span id="borrowTotal" style="display: none; font-size: 24px; color: red;"></span>
 				</div>
 				
 				
